@@ -1,0 +1,33 @@
+# Permission Denied Handling
+# Verifies app doesn't crash or show blank screen when permissions are denied.
+#
+# This catches: PM03, PM05 (no fallback when denied)
+
+appId: ${APP_ID}
+name: Permission Denied Handling
+tags:
+  - regression
+  - permissions
+---
+- launchApp:
+    clearState: true
+    permissions:
+      notifications: deny
+      camera: deny
+      photos: deny
+      location: deny
+
+# App should still launch and function
+- assertVisible:
+    id: "onboarding_welcome_screen"
+    optional: true
+
+# If past onboarding, should see main screen
+- assertVisible:
+    id: "main_tab_bar"
+    optional: true
+
+# App should not be showing a blank screen or crash
+- assertNotVisible: "Error"
+
+- takeScreenshot: permission_denied_ok

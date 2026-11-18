@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xcodegen generate:*)",
+      "Bash(xcodebuild:*)",
+      "Bash(xcrun simctl:*)",
+      "Bash(git checkout:*)",
+      "Bash(bash .specify/scripts/bash/*)",
+      "WebSearch"
+    ]
+  }
+}

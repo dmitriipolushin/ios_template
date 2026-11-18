@@ -1,0 +1,45 @@
+# SwiftLint Configuration
+#
+# Install: brew install swiftlint
+# Add Build Phase in Xcode (or via project.yml):
+#   if command -v swiftlint >/dev/null; then swiftlint; fi
+
+opt_in_rules:
+  - force_unwrapping
+  - empty_count
+  - first_where
+  - contains_over_filter_count
+  - fatal_error_message
+  - discouraged_optional_boolean
+  - unowned_variable_capture
+  - closure_body_length
+
+disabled_rules:
+  - trailing_comma
+
+line_length:
+  warning: 120
+  error: 200
+
+function_body_length:
+  warning: 50
+  error: 100
+
+file_length:
+  warning: 500
+  error: 1000
+
+type_body_length:
+  warning: 250
+  error: 400
+
+cyclomatic_complexity:
+  warning: 10
+  error: 20
+
+excluded:
+  - DerivedData
+  - .build
+  - .swiftpm
+  - Packages
+  - "*.generated.swift"

@@ -1,0 +1,94 @@
+# Onboarding — Happy Path
+# Verifies the complete onboarding flow from splash to main screen.
+#
+# Prerequisites: Fresh install (clearState: true)
+# Expected: User completes onboarding → lands on main screen
+
+appId: ${APP_ID}
+name: Onboarding Happy Path
+tags:
+  - smoke
+  - onboarding
+  - p0
+---
+- launchApp:
+    clearState: true
+
+# Splash screen auto-advances
+- assertVisible:
+    id: "splash_logo"
+    optional: true
+
+# Welcome screen
+- assertVisible:
+    id: "onboarding_welcome_screen"
+- tapOn:
+    id: "onboarding_continue_button"
+
+# Quiz screens — fill in test data
+- assertVisible:
+    id: "onboarding_name_screen"
+- tapOn:
+    id: "onboarding_name_input"
+- inputText: "TestUser"
+- tapOn:
+    id: "onboarding_continue_button"
+
+- assertVisible:
+    id: "onboarding_age_screen"
+- tapOn: "25-29"
+# Age auto-advances on selection
+
+- assertVisible:
+    id: "onboarding_gender_screen"
+- tapOn: "Female"
+# Gender auto-advances on selection
+
+- assertVisible:
+    id: "onboarding_goal_screen"
+- tapOn: "Master routine"
+- tapOn:
+    id: "onboarding_continue_button"
+
+# Insight screens
+- tapOn:
+    id: "onboarding_continue_button"
+
+# Timeline — verify picker is visible
+- assertVisible:
+    id: "onboarding_timeline_screen"
+- assertVisible:
+    id: "onboarding_time_picker"
+- tapOn:
+    id: "onboarding_continue_button"
+
+# Notification permission
+- tapOn:
+    id: "onboarding_continue_button"
+
+# Skip remaining quiz screens
+- repeat:
+    times: 5
+    commands:
+      - tapOn:
+          id: "onboarding_continue_button"
+          optional: true
+
+# Paywall — close it
+- tapOn:
+    id: "paywall_close_button"
+    optional: true
+
+# Task selection
+- assertVisible:
+    id: "onboarding_task_selection_screen"
+    optional: true
+- tapOn:
+    id: "onboarding_finish_button"
+    optional: true
+
+# Verify main screen reached
+- assertVisible:
+    id: "main_tab_bar"
+
+- takeScreenshot: onboarding_complete

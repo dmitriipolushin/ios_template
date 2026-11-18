@@ -1,0 +1,34 @@
+# Subflow: Skip Onboarding
+# Reusable subflow for tests that need to bypass onboarding.
+# Usage in other flows:
+#   - runFlow: subflows/skip_onboarding.yaml
+
+appId: ${APP_ID}
+---
+- launchApp:
+    clearState: true
+
+# Tap through onboarding screens quickly
+- repeat:
+    times: 15
+    commands:
+      - tapOn:
+          id: "onboarding_continue_button"
+          optional: true
+      - tapOn:
+          id: "onboarding_skip_button"
+          optional: true
+
+# Close paywall if shown
+- tapOn:
+    id: "paywall_close_button"
+    optional: true
+
+# Finish onboarding
+- tapOn:
+    id: "onboarding_finish_button"
+    optional: true
+
+# Verify we're on main screen
+- assertVisible:
+    id: "main_tab_bar"

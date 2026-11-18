@@ -1,0 +1,9 @@
+{
+  "name": "proto-parity-scripts",
+  "private": true,
+  "type": "module",
+  "description": "Prototype capture for the proto-parity skill (Playwright, no bundled browser download).",
+  "dependencies": {
+    "playwright-core": "^1.56.1"
+  }
+}

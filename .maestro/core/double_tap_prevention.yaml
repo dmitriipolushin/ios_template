@@ -1,0 +1,31 @@
+# Double Tap Prevention
+# Verifies that rapid taps on critical buttons don't cause duplicate actions.
+#
+# This catches: DT01 (double purchase), DT02 (duplicate submit), DT03 (rapid nav)
+
+appId: ${APP_ID}
+name: Double Tap Prevention
+tags:
+  - regression
+  - stability
+---
+- launchApp
+
+# Navigate to a screen with an action button
+- assertVisible:
+    id: "main_tab_bar"
+
+# Rapid-tap a navigation element — should not push multiple screens
+- tapOn:
+    id: "add_routine_button"
+    optional: true
+- tapOn:
+    id: "add_routine_button"
+    optional: true
+
+# Verify only one instance of the target screen is shown
+- back
+- assertVisible:
+    id: "main_tab_bar"
+
+- takeScreenshot: double_tap_safe

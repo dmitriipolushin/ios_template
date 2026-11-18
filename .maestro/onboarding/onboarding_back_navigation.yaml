@@ -1,0 +1,55 @@
+# Onboarding — Back Navigation
+# Verifies the back button works on every applicable screen.
+#
+# This catches: hit testing issues (H01), flow logic bugs (F01),
+# overlay blocking taps (H02)
+
+appId: ${APP_ID}
+name: Onboarding Back Navigation
+tags:
+  - regression
+  - onboarding
+  - navigation
+---
+- launchApp:
+    clearState: true
+
+# Advance through first screens to reach quiz
+- assertVisible:
+    id: "onboarding_welcome_screen"
+- tapOn:
+    id: "onboarding_continue_button"
+
+# Name screen
+- tapOn:
+    id: "onboarding_name_input"
+- inputText: "BackTest"
+- tapOn:
+    id: "onboarding_continue_button"
+
+# Age screen — go back
+- assertVisible:
+    id: "onboarding_age_screen"
+- tapOn:
+    id: "onboarding_back_button"
+
+# Should return to name screen
+- assertVisible:
+    id: "onboarding_name_screen"
+
+# Go forward again
+- tapOn:
+    id: "onboarding_continue_button"
+
+# Age — select and advance
+- tapOn: "25-29"
+
+# Gender — go back to age
+- assertVisible:
+    id: "onboarding_gender_screen"
+- tapOn:
+    id: "onboarding_back_button"
+- assertVisible:
+    id: "onboarding_age_screen"
+
+- takeScreenshot: back_nav_verified

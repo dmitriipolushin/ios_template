@@ -1,0 +1,11 @@
+# Maestro workspace config
+# Docs: https://docs.maestro.dev
+
+flows:
+  - "**"
+
+excludeFlows:
+  - "subflows/**"
+
+# Output for screenshots and test artifacts
+testOutputDir: build/maestro-results

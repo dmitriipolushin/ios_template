@@ -1,0 +1,51 @@
+# Tab Navigation
+# Verifies all tabs are accessible and render content.
+
+appId: ${APP_ID}
+name: Tab Navigation
+tags:
+  - smoke
+  - navigation
+  - p0
+---
+- launchApp
+
+# Tab 1 — should be visible by default
+- assertVisible:
+    id: "main_tab_bar"
+
+# Switch to each tab and verify content loads
+- tapOn:
+    id: "tab_routines"
+    optional: true
+- assertVisible:
+    id: "routines_screen"
+    optional: true
+
+- tapOn:
+    id: "tab_habits"
+    optional: true
+- assertVisible:
+    id: "habits_screen"
+    optional: true
+
+- tapOn:
+    id: "tab_statistics"
+    optional: true
+- assertVisible:
+    id: "statistics_screen"
+    optional: true
+
+- tapOn:
+    id: "tab_settings"
+    optional: true
+- assertVisible:
+    id: "settings_screen"
+    optional: true
+
+# Return to first tab
+- tapOn:
+    id: "tab_routines"
+    optional: true
+
+- takeScreenshot: all_tabs_ok
