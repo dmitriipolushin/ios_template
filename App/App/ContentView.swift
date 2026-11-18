@@ -10,7 +10,7 @@ struct ContentView: View {
                 .navigationTitle("AppName")
                 .navigationDestination(for: Router.Destination.self) { destination in
                     switch destination {
-                    // case .example: ExampleView()
+                    case .placeholder: EmptyView()
                     }
                 }
         }

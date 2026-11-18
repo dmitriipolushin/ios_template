@@ -17,7 +17,7 @@ final class Router {
     ///   case settings
     ///   case detail(item: Item)
     enum Destination: Hashable {
-        // case example
+        case placeholder // remove when adding real cases
     }
 
     // MARK: - Sheets (modal)

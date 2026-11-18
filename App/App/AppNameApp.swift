@@ -5,7 +5,8 @@ struct AppNameApp: App {
     @State private var adapty = AdaptyManager.shared
 
     init() {
-        Task { await adapty.activate() }
+        // Use the singleton directly: @State isn't installed yet inside App.init()
+        Task { await AdaptyManager.shared.activate() }
     }
 
     var body: some Scene {

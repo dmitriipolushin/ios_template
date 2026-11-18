@@ -35,7 +35,9 @@ final class AdaptyManager: AdaptyDelegate {
     /// Call once in App.init(). Uses AdaptyConfiguration builder per official docs.
     func activate() async {
         guard !AdaptyConfig.apiKey.hasPrefix("YOUR_") else {
-            assertionFailure("[AdaptyManager] Replace YOUR_ADAPTY_PUBLIC_KEY with a real key.")
+            #if DEBUG
+            print("[AdaptyManager] ⚠️ Adapty not activated: replace YOUR_ADAPTY_PUBLIC_KEY with a real key.")
+            #endif
             return
         }
 
