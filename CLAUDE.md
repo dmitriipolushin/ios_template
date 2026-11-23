@@ -39,6 +39,13 @@ Always go through speckit workflow:
 4. `/ios-implement` — implement with iOS patterns
 
 Do NOT skip to writing code without a spec.
+Use `/ios-implement`, not `/speckit.implement` (the generic version without iOS patterns).
+
+### Features with a Design
+If there is a design (`.fig`, `.pen` or an HTML prototype), run the design skills before and after implementation, never in parallel with it:
+1. Before `/speckit.plan`: `/fig-pixel-parity` steps 1–2 — spec (sizes, colors, fonts) and assets into `Assets.xcassets`
+2. `/ios-implement` — build the screens with those assets
+3. After implementation: pixel check — `/fig-pixel-parity` step 4 (`.fig`/`.pen`) or `/proto-parity` (HTML prototype); fix differences and check again
 
 ### Before Writing Code
 Always show a plan first — what files will be created/modified and why.
@@ -119,6 +126,12 @@ Recommendation: [which and why]
 | `/proto-parity` | Pixel and copy parity with an HTML prototype: Playwright shots + DOM geometry, Maestro shots, montages, masked diff images, shape-based measurements, copy and translation-table check (`.claude/skills/proto-parity`, once: `npm install` in its `scripts/`) |
 | `/fig-pixel-parity` | Design from a local `.fig` (or `.pen` via Pencil MCP) into the app pixel for pixel: spec, vector icons, colors and images into `Assets.xcassets`, reference renders and captioned pixel diffs against the simulator |
 | `/store-subscriptions` | Subscriptions end to end: keys and where they go (`KEYS.md`), App Store Connect via the `asc` CLI, Adapty via the `adapty` CLI (products, paywalls, placements), server notifications, purchase checks |
+| `/figma` | Fetch a frame from a Figma link via REST API (needs `FIGMA_TOKEN`) |
+| `/aso-screenshots` | App Store marketing screenshots in all required sizes |
 | `/imagine` | Generate images via kie.ai |
+| `/youtrack` | Query YouTrack issues (needs `YOUTRACK_URL`, `YOUTRACK_TOKEN`, `YOUTRACK_PROJECT`) |
 | `/speckit.clarify` | Resolve ambiguities in spec |
 | `/speckit.analyze` | Cross-artifact consistency check |
+| `/speckit.checklist` | Quality checklist for the current feature's requirements |
+| `/speckit.constitution` | Create or update project principles |
+| `/speckit.taskstoissues` | Turn tasks into GitHub issues |
